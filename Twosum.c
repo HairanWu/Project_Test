@@ -2,31 +2,33 @@
  * Note: The returned array must be malloced, assume caller calls free().
  */
 int* twoSum(int* nums, int numsSize, int target) {
-    typedef struct example_user_t {  
+    typedef struct{  
         int id;  
         int value;  
         UT_hash_handle hh; 
-    } example_user_t;  
+    } Hash_user_t;  
     
-     example_user_t *users=NULL,*tmp=NULL;  
+     Hash_user_t *users=NULL,*tmp=NULL;  
      
-     int *returnarry= malloc(2*sizeof(int));
+     int *ReturnArry= malloc(2*sizeof(int));
      
      int x=0;
      
-    for (int i = 0; i < numsSize; i++) {
+     for (int i = 0; i < numsSize; i++) {
         
          x = target-nums[i];
         
          HASH_FIND_INT(users, &x, tmp);
          
+         //if found
          if(tmp != NULL){
-             returnarry[0]= tmp->id + 1;
-             returnarry[1]= i + 1;
-             return returnarry;
+             ReturnArry[0]= tmp->id + 1;
+             ReturnArry[1]= i + 1;
+             
+             return ReturnArry;
          }
          
-          tmp = (struct example_user_t*)malloc(sizeof(struct example_user_t));
+          tmp = (Hash_user_t*)malloc(sizeof(Hash_user_t));
           
           tmp->id = i;
           
